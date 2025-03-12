@@ -1,144 +1,137 @@
 {% extends 'base.html' %}
 {% load portfolio_tags %}
+{% load static %}
 
-{% block title %}Resume | My Portfolio{% endblock %}
+{% block title %}Home | My Portfolio{% endblock %}
 
 {% block content %}
-<section class="resume">
+<section class="hero simplified-hero">
     <div class="container">
-        <h2 class="section-title">Resume</h2>
-        
-        <div class="resume-header">
-            <h1>Your Name</h1>
-            <p class="job-title">Web Developer & Designer</p>
-            <div class="contact-info">
-                <p><i class="fas fa-envelope"></i> email@example.com</p>
-                <p><i class="fas fa-phone"></i> +1 (123) 456-7890</p>
-                <p><i class="fas fa-map-marker-alt"></i> City, Country</p>
+        <div class="intro-container">
+            <div class="profile-image">
+                <!-- Replace with your actual image or keep the placeholder -->
+                <div class="profile-image-placeholder">
+                    <i class="fas fa-user"></i>
+                </div>
+                <!-- To use an actual image, uncomment and use this instead:
+                <img src="{% static 'images/your-profile-photo.jpg' %}" alt="Your Name"> 
+                -->
             </div>
-        </div>
-        
-        <div class="resume-download">
-            <a href="#" class="btn btn-primary">
-                <i class="fas fa-download"></i> Download PDF
-            </a>
-        </div>
-        
-        <div class="resume-section">
-            <h3><i class="fas fa-briefcase"></i> Professional Experience</h3>
-            <div class="timeline">
-                {% for job in experience %}
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h4>{{ job.title }}</h4>
-                        <h5>{{ job.company }} - {{ job.location }}</h5>
-                        <p class="timeline-date">
-                            {{ job.start_date|date:"M Y" }} - 
-                            {% if job.current %}Present{% else %}{{ job.end_date|date:"M Y" }}{% endif %}
-                        </p>
-                        <p>{{ job.description|linebreaks }}</p>
-                    </div>
+            <div class="intro-text">
+                <h1>Hello, I'm <span class="highlight">Your Name</span></h1>
+                <h2>Web Developer & Designer</h2>
+                <div class="intro-description">
+                    <p>Welcome to my portfolio website. I am a passionate web developer with expertise in creating beautiful, functional websites. I specialize in using modern technologies like Django, Python, HTML5, CSS3, and JavaScript to build responsive web applications.</p>
+                    
+                    <p>With a background in computer science and a keen eye for design, I strive to create web experiences that are not only visually appealing but also user-friendly and accessible.</p>
+                    
+                    <p>Feel free to explore my portfolio to see my recent projects or get in touch if you'd like to work together!</p>
                 </div>
-                {% empty %}
-                <!-- Default experience if database is empty -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h4>Senior Web Developer</h4>
-                        <h5>ABC Technologies - City, Country</h5>
-                        <p class="timeline-date">Jan 2020 - Present</p>
-                        <p>Led the development of responsive websites and web applications for various clients. Collaborated with designers and back-end developers to deliver high-quality products on schedule.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h4>Web Developer</h4>
-                        <h5>XYZ Solutions - City, Country</h5>
-                        <p class="timeline-date">Jun 2017 - Dec 2019</p>
-                        <p>Developed and maintained websites for small to medium-sized businesses. Implemented responsive designs and ensured cross-browser compatibility.</p>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-        
-        <div class="resume-section">
-            <h3><i class="fas fa-graduation-cap"></i> Education</h3>
-            <div class="timeline">
-                {% for edu in education %}
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h4>{{ edu.degree }} in {{ edu.field_of_study }}</h4>
-                        <h5>{{ edu.institution }}</h5>
-                        <p class="timeline-date">
-                            {{ edu.start_date|date:"M Y" }} - 
-                            {% if edu.current %}Present{% else %}{{ edu.end_date|date:"M Y" }}{% endif %}
-                        </p>
-                        {% if edu.description %}
-                        <p>{{ edu.description|linebreaks }}</p>
-                        {% endif %}
-                    </div>
-                </div>
-                {% empty %}
-                <!-- Default education if database is empty -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h4>Bachelor of Science in Computer Science</h4>
-                        <h5>University Name</h5>
-                        <p class="timeline-date">Sep 2013 - Jun 2017</p>
-                        <p>Graduated with honors. Focused on web development and database management.</p>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-        
-        <div class="resume-section">
-            <h3><i class="fas fa-code"></i> Skills</h3>
-            <div class="skills-grid">
-                {% for skill in skills %}
-                <div class="skill-category">
-                    <h4>{{ skill.name }}</h4>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: {{ skill.proficiency|multiply:20 }}%"></div>
-                    </div>
-                </div>
-                {% empty %}
-                <!-- Default skills if database is empty -->
-                <div class="skill-category">
-                    <h4>Front-End Development</h4>
-                    <ul class="skill-list">
-                        <li>HTML5 / CSS3</li>
-                        <li>JavaScript / jQuery</li>
-                        <li>React.js</li>
-                        <li>Bootstrap</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h4>Back-End Development</h4>
-                    <ul class="skill-list">
-                        <li>Python</li>
-                        <li>Django</li>
-                        <li>Node.js</li>
-                        <li>SQL / NoSQL Databases</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h4>Tools & Technologies</h4>
-                    <ul class="skill-list">
-                        <li>Git / GitHub</li>
-                        <li>Docker</li>
-                        <li>AWS</li>
-                        <li>RESTful APIs</li>
-                    </ul>
-                </div>
-                {% endfor %}
             </div>
         </div>
     </div>
 </section>
+
+<style>
+    .simplified-hero {
+        padding: 6rem 0;
+        min-height: calc(100vh - 70px - 200px);
+        display: flex;
+        align-items: center;
+    }
+    
+    .intro-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 3rem;
+        align-items: center;
+    }
+    
+    .profile-image {
+        flex: 0 0 400px; /* Increased from 300px */
+    }
+    
+    .profile-image-placeholder {
+        width: 400px; /* Increased from 300px */
+        height: 400px; /* Increased from 300px */
+        border-radius: 50%;
+        background-color: var(--gray-200);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 8rem; /* Increased from 6rem */
+        color: var(--gray-400);
+        overflow: hidden;
+        box-shadow: var(--box-shadow);
+    }
+    
+    .profile-image img {
+        width: 400px; /* Increased from 300px */
+        height: 400px; /* Increased from 300px */
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: var(--box-shadow);
+    }
+    
+    .intro-text {
+        flex: 1 1 500px;
+    }
+    
+    .intro-text h1 {
+        font-family: var(--font-family-headings);
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: var(--gray-900);
+    }
+    
+    .intro-text h2 {
+        font-family: var(--font-family-headings);
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin-bottom: 1.5rem;
+        color: var(--gray-700);
+    }
+    
+    .intro-description p {
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+        color: var(--gray-700);
+        line-height: 1.7;
+    }
+    
+    @media (prefers-color-scheme: dark) {
+        .intro-text h1 {
+            color: var(--gray-100);
+        }
+        
+        .intro-text h2, 
+        .intro-description p {
+            color: var(--gray-300);
+        }
+        
+        .profile-image-placeholder {
+            background-color: var(--gray-800);
+            color: var(--gray-600);
+        }
+    }
+    
+    @media screen and (max-width: 768px) {
+        .intro-container {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .profile-image-placeholder,
+        .profile-image img {
+            width: 280px; /* Increased from 200px but still smaller than desktop for mobile */
+            height: 280px; /* Increased from 200px but still smaller than desktop for mobile */
+            margin: 0 auto;
+        }
+        
+        .profile-image-placeholder {
+            font-size: 5.5rem; /* Increased from 4rem */
+        }
+    }
+</style>
 {% endblock %}

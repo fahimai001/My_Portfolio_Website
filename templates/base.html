@@ -10,6 +10,64 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Add Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <style>
+        /* Custom styles for navigation and logo */
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+            position: relative; /* Add this for absolute positioning */
+        }
+        
+        .logo {
+            font-family: var(--font-family-headings);
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            position: absolute;
+            left: 5px; /* Position directly on the left corner */
+        }
+        
+        nav {
+            margin-left: auto; /* Push navigation to the right side */
+        }
+        
+        nav ul li {
+            margin-left: 2.5rem; /* Increase space between navigation items */
+        }
+        
+        nav ul li a {
+            color: var(--gray-800);
+            font-weight: 600;
+            font-size: 1.2rem; /* Make navigation text bigger */
+            position: relative;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            nav ul li a {
+                color: var(--gray-300);
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .logo {
+                position: static; /* Reset position on mobile */
+                margin-right: 0;
+            }
+            
+            nav ul li {
+                margin: 0; /* Reset margin on mobile */
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 15px 0;
+                border-bottom: 1px solid var(--gray-200);
+                font-size: 1.2rem; /* Keep the bigger font size on mobile */
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
