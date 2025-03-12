@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block title %}Home | My Portfolio{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Hello, I'm <span class="highlight">Your Name</span></h1>
+            <h2>Web Developer & Designer</h2>
+            <p>I create beautiful and functional websites using modern technologies.</p>
+            <div class="cta-buttons">
+                <a href="{% url 'projects' %}" class="btn btn-primary">View Projects</a>
+                <a href="{% url 'contact' %}" class="btn btn-secondary">Contact Me</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="profile-image-placeholder">
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about">
+    <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Hello! I'm a passionate web developer with a keen eye for design and a love for creating seamless user experiences. With a background in computer science and several years of industry experience, I specialize in building responsive, accessible websites and web applications.</p>
+                <p>I believe in clean code, continuous learning, and collaborative problem-solving. When I'm not coding, you can find me hiking, reading, or experimenting with new recipes in the kitchen.</p>
+            </div>
+            <div class="about-skills">
+                <h3>Skills</h3>
+                <div class="skills-container">
+                    {% for skill in skills %}
+                    <div class="skill-item">
+                        <span class="skill-name">{{ skill.name }}</span>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: {{ skill.proficiency|multiply:20 }}%"></div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p>Skills will appear here once added through the admin panel.</p>
+                    {% endfor %}
+                    <!-- Fallback skills if database is empty -->
+                    {% if not skills %}
+                    <div class="skill-item">
+                        <span class="skill-name">HTML/CSS</span>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">JavaScript</span>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Python</span>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Django</span>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="services">
+    <div class="container">
+        <h2 class="section-title">Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3>Web Development</h3>
+                <p>Custom websites built with modern technologies like HTML5, CSS3, and JavaScript.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Responsive Design</h3>
+                <p>Websites that look great on all devices, from desktop to mobile.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h3>Back-End Development</h3>
+                <p>Robust server-side solutions using Python, Django, and SQL databases.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>SEO Optimization</h3>
+                <p>Improve your website's visibility and rankings on search engines.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

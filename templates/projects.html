@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block title %}Projects | My Portfolio{% endblock %}
+
+{% block content %}
+<section class="projects">
+    <div class="container">
+        <h2 class="section-title">My Projects</h2>
+        
+        <div class="projects-grid">
+            {% for project in projects %}
+            <div class="project-card">
+                {% if project.image %}
+                <div class="project-image">
+                    <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                </div>
+                {% else %}
+                <div class="project-image project-placeholder">
+                    <i class="fas fa-code"></i>
+                </div>
+                {% endif %}
+                <div class="project-content">
+                    <h3>{{ project.title }}</h3>
+                    <p class="project-date">{{ project.date_created|date:"F Y" }}</p>
+                    <p>{{ project.description|truncatewords:30 }}</p>
+                    <div class="project-links">
+                        {% if project.url %}
+                        <a href="{{ project.url }}" class="btn btn-sm" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                        {% endif %}
+                        {% if project.github_url %}
+                        <a href="{{ project.github_url }}" class="btn btn-sm btn-secondary" target="_blank">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <!-- Default projects if database is empty -->
+            <div class="project-card">
+                <div class="project-image project-placeholder">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <div class="project-content">
+                    <h3>E-Commerce Website</h3>
+                    <p class="project-date">June 2022</p>
+                    <p>A full-featured e-commerce platform built with Django and React. Features include product catalog, shopping cart, user accounts, and payment integration.</p>
+                    <div class="project-links">
+                        <a href="#" class="btn btn-sm">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                        <a href="#" class="btn btn-sm btn-secondary">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image project-placeholder">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="project-content">
+                    <h3>Data Visualization Dashboard</h3>
+                    <p class="project-date">March 2022</p>
+                    <p>An interactive dashboard for visualizing complex datasets. Built with Django, D3.js, and Chart.js.</p>
+                    <div class="project-links">
+                        <a href="#" class="btn btn-sm">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                        <a href="#" class="btn btn-sm btn-secondary">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image project-placeholder">
+                    <i class="fas fa-tasks"></i>
+                </div>
+                <div class="project-content">
+                    <h3>Task Management App</h3>
+                    <p class="project-date">November 2021</p>
+                    <p>A productivity app for managing tasks and projects. Features include drag-and-drop interface, due dates, priorities, and team collaboration.</p>
+                    <div class="project-links">
+                        <a href="#" class="btn btn-sm">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                        <a href="#" class="btn btn-sm btn-secondary">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
