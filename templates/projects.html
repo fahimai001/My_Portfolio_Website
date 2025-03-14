@@ -8,6 +8,44 @@
         <h2 class="section-title">My Projects</h2>
         
         <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image project-placeholder">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="project-content">
+                    <h3>Google Chrome Plugin for YouTube Comment Sentiment Analysis</h3>
+                    <p class="project-date">Date Created</p>
+                    <p>Built an End-to-End Google Chrome Plugin to analyze and visualize YouTube video comments. Enabled sentiment analysis with Positive, Negative, Neutral results and a word cloud for frequent words. Simplified audience insights for content creators by automating comment analysis. Integrated DVC, MLFlow, and Docker for versioning, tracking, and seamless deployment. Deployed on AWS EC2, ensuring global accessibility for users.</p>
+                    <div class="project-links">
+                        <a href="#" class="btn btn-sm" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                        <a href="#" class="btn btn-sm btn-secondary" target="_blank">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image project-placeholder">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="project-content">
+                    <h3>CryptoCurrency Forecasting</h3>
+                    <p class="project-date">Date Created</p>
+                    <p>Developed a system to forecast Bitcoin and Ethereum close prices. Designed a robust data pipeline for ingestion, preprocessing, and feature scaling. Built an end-to-end prediction pipeline for real-time forecasting. Dockerized the application and deployed it on AWS EC2 for scalable access.</p>
+                    <div class="project-links">
+                        <a href="#" class="btn btn-sm" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                        <a href="#" class="btn btn-sm btn-secondary" target="_blank">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
             {% for project in projects %}
             <div class="project-card">
                 {% if project.image %}
@@ -34,62 +72,6 @@
                             <i class="fab fa-github"></i> GitHub
                         </a>
                         {% endif %}
-                    </div>
-                </div>
-            </div>
-            {% empty %}
-            <!-- Default projects if database is empty -->
-            <div class="project-card">
-                <div class="project-image project-placeholder">
-                    <i class="fas fa-shopping-cart"></i>
-                </div>
-                <div class="project-content">
-                    <h3>E-Commerce Website</h3>
-                    <p class="project-date">June 2022</p>
-                    <p>A full-featured e-commerce platform built with Django and React. Features include product catalog, shopping cart, user accounts, and payment integration.</p>
-                    <div class="project-links">
-                        <a href="#" class="btn btn-sm">
-                            <i class="fas fa-external-link-alt"></i> Live Demo
-                        </a>
-                        <a href="#" class="btn btn-sm btn-secondary">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-image project-placeholder">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <div class="project-content">
-                    <h3>Data Visualization Dashboard</h3>
-                    <p class="project-date">March 2022</p>
-                    <p>An interactive dashboard for visualizing complex datasets. Built with Django, D3.js, and Chart.js.</p>
-                    <div class="project-links">
-                        <a href="#" class="btn btn-sm">
-                            <i class="fas fa-external-link-alt"></i> Live Demo
-                        </a>
-                        <a href="#" class="btn btn-sm btn-secondary">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-image project-placeholder">
-                    <i class="fas fa-tasks"></i>
-                </div>
-                <div class="project-content">
-                    <h3>Task Management App</h3>
-                    <p class="project-date">November 2021</p>
-                    <p>A productivity app for managing tasks and projects. Features include drag-and-drop interface, due dates, priorities, and team collaboration.</p>
-                    <div class="project-links">
-                        <a href="#" class="btn btn-sm">
-                            <i class="fas fa-external-link-alt"></i> Live Demo
-                        </a>
-                        <a href="#" class="btn btn-sm btn-secondary">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
                     </div>
                 </div>
             </div>
