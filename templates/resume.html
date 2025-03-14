@@ -10,10 +10,10 @@
         
         <div class="resume-header">
             <h1>Fahim Sabir</h1>
-            <p class="job-title">Data Scientist & Analyst</p>
+            <p class="job-title">Data Scientist (AI, ML)</p>
             <div class="contact-info">
-                <p><i class="fas fa-envelope"></i> email@example.com</p>
-                <p><i class="fas fa-phone"></i> +1 (123) 456-7890</p>
+                <p><i class="fas fa-envelope"></i> fahim.sabir011@gmail.com</p>
+                <p><i class="fas fa-phone"></i> +923328493818</p>
                 <p><i class="fas fa-map-marker-alt"></i> City, Country</p>
             </div>
         </div>
@@ -27,117 +27,100 @@
         <div class="resume-section">
             <h3><i class="fas fa-briefcase"></i> Professional Experience</h3>
             <div class="timeline">
-                {% for job in experience %}
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <h4>{{ job.title }}</h4>
-                        <h5>{{ job.company }} - {{ job.location }}</h5>
-                        <p class="timeline-date">
-                            {{ job.start_date|date:"M Y" }} - 
-                            {% if job.current %}Present{% else %}{{ job.end_date|date:"M Y" }}{% endif %}
-                        </p>
-                        <p>{{ job.description|linebreaks }}</p>
-                    </div>
-                </div>
-                {% empty %}
-                <!-- Default experience if database is empty -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h4>Senior Web Developer</h4>
-                        <h5>ABC Technologies - City, Country</h5>
-                        <p class="timeline-date">Jan 2020 - Present</p>
-                        <p>Led the development of responsive websites and web applications for various clients. Collaborated with designers and back-end developers to deliver high-quality products on schedule.</p>
+                        <h4>AI/ML Engineer</h4>
+                        <h5>JMM Technologies</h5>
+                        <p class="timeline-date">January 2025 - Present</p>
+                        <p>Conducted data analysis, preprocessing, and feature engineering to extract meaningful insights and improve model input quality. Built, tuned, and evaluated machine learning models to ensure optimal performance and accuracy. Collaborated with cross-functional teams to integrate AI models into web applications for seamless functionality. Deployed models on AWS platforms, ensuring scalability, stability, and performance in cloud environments.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <h4>Web Developer</h4>
-                        <h5>XYZ Solutions - City, Country</h5>
-                        <p class="timeline-date">Jun 2017 - Dec 2019</p>
-                        <p>Developed and maintained websites for small to medium-sized businesses. Implemented responsive designs and ensured cross-browser compatibility.</p>
+                        <h4>AI/ML Engineer Intern</h4>
+                        <h5>Horizon Tech Services NSTP, NUST</h5>
+                        <p class="timeline-date">July 2024 - December 2024</p>
+                        <p>Build and maintain robust pipelines for developing end-to-end machine learning models, ensuring efficiency and scalability throughout the process. Collaborate closely with cross-functional teams to seamlessly integrate machine learning models into web applications, enhancing user experience and functionality. Track experiments and deploy models on AWS cloud.</p>
                     </div>
                 </div>
-                {% endfor %}
             </div>
         </div>
         
         <div class="resume-section">
             <h3><i class="fas fa-graduation-cap"></i> Education</h3>
             <div class="timeline">
-                {% for edu in education %}
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h4>{{ edu.degree }} in {{ edu.field_of_study }}</h4>
-                        <h5>{{ edu.institution }}</h5>
-                        <p class="timeline-date">
-                            {{ edu.start_date|date:"M Y" }} - 
-                            {% if edu.current %}Present{% else %}{{ edu.end_date|date:"M Y" }}{% endif %}
-                        </p>
-                        {% if edu.description %}
-                        <p>{{ edu.description|linebreaks }}</p>
-                        {% endif %}
-                    </div>
-                </div>
-                {% empty %}
-                <!-- Default education if database is empty -->
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <h4>Bachelor of Science in Computer Science</h4>
-                        <h5>University Name</h5>
-                        <p class="timeline-date">Sep 2013 - Jun 2017</p>
-                        <p>Graduated with honors. Focused on web development and database management.</p>
+                        <h5>University of Science & Technology, Bannu</h5>
+                        <p class="timeline-date">2020 - 2024</p>
+                        <p>Graduated with a 3.5 CGPA.</p>
                     </div>
                 </div>
-                {% endfor %}
             </div>
         </div>
         
         <div class="resume-section">
             <h3><i class="fas fa-code"></i> Skills</h3>
             <div class="skills-grid">
-                {% for skill in skills %}
                 <div class="skill-category">
-                    <h4>{{ skill.name }}</h4>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: {{ skill.proficiency|multiply:20 }}%"></div>
-                    </div>
-                </div>
-                {% empty %}
-                <!-- Default skills if database is empty -->
-                <div class="skill-category">
-                    <h4>Front-End Development</h4>
-                    <ul class="skill-list">
-                        <li>HTML5 / CSS3</li>
-                        <li>JavaScript / jQuery</li>
-                        <li>React.js</li>
-                        <li>Bootstrap</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h4>Back-End Development</h4>
+                    <h4>AI & Machine Learning</h4>
                     <ul class="skill-list">
                         <li>Python</li>
-                        <li>Django</li>
-                        <li>Node.js</li>
-                        <li>SQL / NoSQL Databases</li>
+                        <li>Scikit-Learn</li>
+                        <li>TensorFlow</li>
+                        <li>Keras</li>
+                        <li>PyTorch</li>
+                        <li>Matplotlib</li>
+                        <li>Pandas</li>
+                        <li>SQL</li>
                     </ul>
                 </div>
                 <div class="skill-category">
-                    <h4>Tools & Technologies</h4>
+                    <h4>NLP & Generative AI</h4>
                     <ul class="skill-list">
-                        <li>Git / GitHub</li>
-                        <li>Docker</li>
-                        <li>AWS</li>
-                        <li>RESTful APIs</li>
+                        <li>Transformer Architecture</li>
+                        <li>Hugging Face</li>
+                        <li>Fine Tuning</li>
+                        <li>RAG</li>
+                        <li>LangChain</li>
                     </ul>
                 </div>
-                {% endfor %}
+                <div class="skill-category">
+                    <h4>MLOps & Cloud Based Web-Services</h4>
+                    <ul class="skill-list">
+                        <li>AWS</li>
+                        <li>Docker</li>
+                        <li>Flask</li>
+                        <li>Streamlit</li>
+                        <li>DVC</li>
+                        <li>MLflow</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h4>Unsupervised Learning Algorithms</h4>
+                    <ul class="skill-list">
+                        <li>ANN</li>
+                        <li>CNN</li>
+                        <li>RNN</li>
+                        <li>LSTM</li>
+                        <li>GRU</li>
+                    </ul>
+                </div>
             </div>
+        </div>
+        
+        <div class="resume-section">
+            <h3><i class="fas fa-project-diagram"></i> Projects</h3>
+            <ul class="project-list">
+                <li>Developed a system to forecast Bitcoin and Ethereum close prices.</li>
+                <li>Built an end-to-end Google Chrome Plugin for YouTube Comment Sentiment Analysis.</li>
+                <li>Designed a robust data pipeline for ingestion, preprocessing, and feature scaling.</li>
+                <li>Dockerized the application and deployed it on AWS EC2 for scalable access.</li>
+            </ul>
         </div>
     </div>
 </section>
