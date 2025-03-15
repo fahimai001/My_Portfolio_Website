@@ -6,99 +6,25 @@
     <title>{% block title %}My Portfolio{% endblock %}</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <!-- Add Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Add Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <style>
-        /* Custom styles for navigation and logo */
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 70px;
-            position: relative; /* Add this for absolute positioning */
-        }
-        
-        .logo {
-            font-family: var(--font-family-headings);
-            font-size: 1.7rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            position: absolute;
-            left: 5px; /* Position directly on the left corner */
-        }
-        
-        nav {
-            margin-left: auto; /* Push navigation to the right side */
-        }
-        
-        nav ul li {
-            margin-left: 2.5rem; /* Increase space between navigation items */
-        }
-        
-        nav ul li a {
-            color: var(--gray-800);
-            font-weight: 600;
-            font-size: 1.2rem; /* Make navigation text bigger */
-            position: relative;
-        }
-        
-        @media (prefers-color-scheme: dark) {
-            nav ul li a {
-                color: var(--gray-300);
-            }
-        }
-        
-        @media screen and (max-width: 768px) {
-            .logo {
-                position: static; /* Reset position on mobile */
-                margin-right: 0;
-            }
-            
-            nav ul li {
-                margin: 0; /* Reset margin on mobile */
-            }
-            
-            nav ul li a {
-                display: block;
-                padding: 15px 0;
-                border-bottom: 1px solid var(--gray-200);
-                font-size: 1.2rem; /* Keep the bigger font size on mobile */
-            }
-        }
-    </style>
 </head>
 <body>
     <header>
         <div class="container">
             <h1 class="logo">My Portfolio</h1>
             <nav>
-                <input type="checkbox" id="nav-toggle" class="nav-toggle">
-                <label for="nav-toggle" class="nav-toggle-label">
-                    <span></span>
-                </label>
                 <ul>
-                    <li><a href="{% url 'home' %}" {% if request.path == '/' %}class="active"{% endif %}>Home</a></li>
-                    <li><a href="{% url 'resume' %}" {% if request.path == '/resume/' %}class="active"{% endif %}>Resume</a></li>
-                    <li><a href="{% url 'projects' %}" {% if request.path == '/projects/' %}class="active"{% endif %}>Projects</a></li>
-                    <li><a href="{% url 'contact' %}" {% if request.path == '/contact/' %}class="active"{% endif %}>Contact</a></li>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'resume' %}">Resume</a></li>
+                    <li><a href="{% url 'projects' %}">Projects</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main>
-        {% if messages %}
-        <div class="messages">
-            {% for message in messages %}
-            <div class="message {% if message.tags %}{{ message.tags }}{% endif %}">
-                {{ message }}
-            </div>
-            {% endfor %}
-        </div>
-        {% endif %}
-
         {% block content %}{% endblock %}
     </main>
 
@@ -107,37 +33,20 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Contact Info</h3>
-                    <p><i class="fas fa-envelope"></i> email@example.com</p>
-                    <p><i class="fas fa-phone"></i> +1 (123) 456-7890</p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:fahim.sabir011@gmail.com">fahim.sabir011@gmail.com</a></p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+923328493818">+92 332 8493818</a></p>
                     <p><i class="fas fa-map-marker-alt"></i> City, Country</p>
                 </div>
                 <div class="footer-section">
                     <h3>Social Media</h3>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://github.com/fahimai001" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/fahim-sabir-a04102307/" target="_blank"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
             </div>
             <p class="copyright">&copy; {% now "Y" %} My Portfolio. All Rights Reserved.</p>
         </div>
     </footer>
-
-    <script>
-        // Auto-hide messages after 5 seconds
-        document.addEventListener('DOMContentLoaded', function() {
-            const messages = document.querySelectorAll('.message');
-            messages.forEach(function(message) {
-                setTimeout(function() {
-                    message.style.opacity = '0';
-                    setTimeout(function() {
-                        message.style.display = 'none';
-                    }, 600);
-                }, 5000);
-            });
-        });
-    </script>
 </body>
 </html>
