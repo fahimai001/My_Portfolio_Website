@@ -1193,3 +1193,19 @@ footer {
         flex-direction: column;
     }
 }
+
+.video-section {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 320px; /* Adjust width as needed */
+    z-index: 10; /* Ensures it stays above other content */
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    background: #000;
+}
