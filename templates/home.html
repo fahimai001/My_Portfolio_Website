@@ -45,12 +45,14 @@
     }
     
     .profile-image {
-        flex: 0 0 400px;
+        flex: 0 0 450px;
+        /* Shift the image a little to the left and up */
+        transform: translate(-20px, -20px);
     }
     
     .profile-image-placeholder {
-        width: 400px;
-        height: 400px;
+        width: 450px;
+        height: 450px;
         border-radius: 50%;
         background-color: var(--gray-200);
         display: flex;
@@ -63,8 +65,8 @@
     }
     
     .profile-image img {
-        width: 400px;
-        height: 400px;
+        width: 450px;
+        height: 450px;
         border-radius: 50%;
         object-fit: cover;
         box-shadow: var(--box-shadow);
@@ -121,9 +123,14 @@
         
         .profile-image-placeholder,
         .profile-image img {
-            width: 280px;
-            height: 280px;
+            width: 315px;
+            height: 315px;
             margin: 0 auto;
+        }
+        
+        /* Remove left and upward offset on smaller screens */
+        .profile-image {
+            transform: none;
         }
         
         .profile-image-placeholder {
