@@ -1198,7 +1198,7 @@ footer {
     position: absolute;
     top: 20px;
     right: 20px;
-    width: 320px; /* Adjust width as needed */
+    width: 320px; 
     z-index: 10; 
 }
 
