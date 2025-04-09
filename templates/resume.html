@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load portfolio_tags %}
 
-{% block title %}Resume | My Portfolio{% endblock %}
+{% block title %}Resume | {{ site_config.site_name }}{% endblock %}
 
 {% block content %}
 <section class="resume">
@@ -9,21 +9,23 @@
         <h2 class="section-title">Resume</h2>
 
         <div class="resume-header">
-            <h1>Fahim Sabir</h1>
-            <p class="job-title">Data Scientist (AI, ML)</p>
+            <h1>{{ user_profile.name }}</h1>
+            <p class="job-title">{{ user_profile.job_title }}</p>
             <div class="contact-info">
-                <p><i class="fas fa-envelope"></i> fahim.sabir011@gmail.com</p>
-                <p><i class="fas fa-phone"></i> +923328493818</p>
-                <p><i class="fas fa-map-marker-alt"></i> City, Country</p>
+                <p><i class="fas fa-envelope"></i> {{ site_config.contact_email }}</p>
+                <p><i class="fas fa-phone"></i> {{ site_config.phone_number }}</p>
+                <p><i class="fas fa-map-marker-alt"></i> {{ site_config.address }}</p>
             </div>
         </div>
-        
+
+        {% if user_profile.resume_file %}
         <div class="resume-download">
-            <a href="#" class="btn btn-primary">
+            <a href="{{ user_profile.resume_file.url }}" class="btn btn-primary">
                 <i class="fas fa-download"></i> Download PDF
             </a>
         </div>
-        
+        {% endif %}
+
         <div class="resume-section">
             <h3><i class="fas fa-briefcase"></i> Professional Experience</h3>
             <div class="timeline">
@@ -47,7 +49,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="resume-section">
             <h3><i class="fas fa-graduation-cap"></i> Education</h3>
             <div class="timeline">
@@ -62,7 +64,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="resume-section">
             <h3><i class="fas fa-code"></i> Skills</h3>
             <div class="skills-grid">
@@ -112,7 +114,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="resume-section">
             <h3><i class="fas fa-project-diagram"></i> Projects</h3>
             <ul class="project-list">

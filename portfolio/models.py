@@ -5,6 +5,34 @@ from django.db import models
 
 from django.db import models
 
+class SiteConfiguration(models.Model):
+    site_name = models.CharField(max_length=100, default='My Portfolio')
+    contact_email = models.EmailField(default='your@email.com')
+    phone_number = models.CharField(max_length=20, default='+1234567890')
+    address = models.CharField(max_length=200, default='City, Country')
+    github_url = models.URLField(blank=True)
+    linkedin_url = models.URLField(blank=True)
+    copyright_text = models.CharField(max_length=200, default='© {% now "Y" %} My Portfolio. All Rights Reserved.')
+
+    def __str__(self):
+        return "Site Configuration"
+
+    class Meta:
+        verbose_name = "Site Configuration"
+
+class UserProfile(models.Model):
+    name = models.CharField(max_length=100, default='Your Name')
+    job_title = models.CharField(max_length=200, default='Your Job Title')
+    profile_image = models.ImageField(upload_to='profile/', blank=True)
+    about_text = models.TextField(blank=True)
+    resume_file = models.FileField(upload_to='resumes/', blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "User Profile"
+
 class Project(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()

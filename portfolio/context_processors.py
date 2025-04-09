@@ -1,9 +1,8 @@
 from django.conf import settings
+from .models import SiteConfiguration, UserProfile
 
 def portfolio_context(request):
-    """Global context for all templates."""
     return {
-        'site_name': 'My Portfolio',
-        'site_author': 'Your Name',
-        'site_description': 'Web Developer & Designer',
+        'site_config': SiteConfiguration.objects.first(),
+        'user_profile': UserProfile.objects.first()
     }

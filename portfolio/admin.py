@@ -1,10 +1,19 @@
 from django.contrib import admin
+from .models import Project, Skill, Education, Experience, Contact, SiteConfiguration, UserProfile
 
-# Register your models here.
+class SingletonAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        return False if self.model.objects.count() > 0 else super().has_add_permission(request)
 
-from django.contrib import admin
-from .models import Project, Skill, Education, Experience, Contact
+@admin.register(SiteConfiguration)
+class SiteConfigurationAdmin(SingletonAdmin):
+    pass
 
+@admin.register(UserProfile)
+class UserProfileAdmin(SingletonAdmin):
+    pass
+
+# Keep existing registrations
 admin.site.register(Project)
 admin.site.register(Skill)
 admin.site.register(Education)

@@ -2,27 +2,26 @@
 {% load portfolio_tags %}
 {% load static %}
 
-{% block title %}Home | My Portfolio{% endblock %}
+{% block title %}Home | {{ site_config.site_name }}{% endblock %}
 
 {% block content %}
 <section class="hero simplified-hero">
     <div class="container">
         <div class="intro-container">
             <div class="profile-image">
-                <!-- Using your actual image instead of the placeholder -->
-                <img src="{% static 'My_pic.jpeg' %}" alt="Fahim Sabir">
+                {% if user_profile.profile_image %}
+                <img src="{{ user_profile.profile_image.url }}" alt="{{ user_profile.name }}">
+                {% else %}
+                <div class="profile-image-placeholder">
+                    <i class="fas fa-user"></i>
+                </div>
+                {% endif %}
             </div>
             <div class="intro-text">
-                <h1>Hello, I'm <span class="highlight">Fahim Sabir</span></h1>
-                <h2>Data Scientist & Machine Learning Engineer</h2>
+                <h1>Hello, I'm <span class="highlight">{{ user_profile.name }}</span></h1>
+                <h2>{{ user_profile.job_title }}</h2>
                 <div class="intro-description">
-                    <p>Welcome to my portfolio. I am a dedicated Data Scientist specializing in Machine Learning, Deep Learning, and MLOps. I focus on designing scalable AI solutions, developing predictive models, and deploying machine learning applications tailored to modern business challenges.</p>
-                    
-                    <p>My hands-on experience with large language models has enabled me to fine-tune, optimize, and integrate these systems effectively into real-world applications. I am proficient with key frameworks including PyTorch, TensorFlow, and XGBoost, ensuring the delivery of high-performance, AI-driven solutions.</p>
-                    
-                    <p>In addition to model development, I possess robust expertise in MLOps—streamlining ML pipelines, containerizing applications with Docker, and deploying models on cloud platforms such as AWS. I am passionate about leveraging data-driven insights to create innovative solutions that deliver tangible business value.</p>
-                    
-                    <p>I invite you to explore my portfolio to review my recent projects and consider potential collaborations on AI-focused initiatives.</p>
+                    {{ user_profile.about_text|linebreaks }}
                 </div>
             </div>
         </div>
@@ -46,14 +45,12 @@
     
     .profile-image {
         flex: 0 0 450px;
-        /* Shift the image a little to the left and up */
         transform: translate(-20px, -20px);
     }
     
     .profile-image-placeholder {
         width: 450px;
         height: 450px;
-        /* Removed border-radius for square shape */
         background-color: var(--gray-200);
         display: flex;
         justify-content: center;
@@ -67,7 +64,6 @@
     .profile-image img {
         width: 450px;
         height: 450px;
-        /* Removed border-radius for square shape */
         object-fit: cover;
         box-shadow: var(--box-shadow);
     }
@@ -128,7 +124,6 @@
             margin: 0 auto;
         }
         
-        /* Remove left and upward offset on smaller screens */
         .profile-image {
             transform: none;
         }
