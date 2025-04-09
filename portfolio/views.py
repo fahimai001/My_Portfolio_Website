@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 
+from collections import defaultdict
 
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -12,13 +13,21 @@ def home(request):
     return render(request, 'home.html', {'skills': skills})
 
 def resume(request):
-    education = Education.objects.all()
-    experience = Experience.objects.all()
+    education = Education.objects.all().order_by('-end_date')
+    experience = Experience.objects.all().order_by('-end_date')
+    projects = Project.objects.all().order_by('-date_created')
+    
+    # Organize skills by category
     skills = Skill.objects.all()
+    skill_categories = defaultdict(list)
+    for skill in skills:
+        skill_categories[skill.get_category_display()].append(skill)
+    
     return render(request, 'resume.html', {
         'education': education,
         'experience': experience,
-        'skills': skills,
+        'skill_categories': dict(skill_categories),
+        'projects': projects
     })
 
 def projects(request):

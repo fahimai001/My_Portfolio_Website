@@ -6,46 +6,8 @@
 <section class="projects">
     <div class="container">
         <h2 class="section-title">My Projects</h2>
-        
+
         <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-image project-placeholder">
-                    <i class="fas fa-code"></i>
-                </div>
-                <div class="project-content">
-                    <h3>Google Chrome Plugin for YouTube Comment Sentiment Analysis</h3>
-                    <p class="project-date">Date Created</p>
-                    <p>Built an End-to-End Google Chrome Plugin to analyze and visualize YouTube video comments. Enabled sentiment analysis with Positive, Negative, Neutral results and a word cloud for frequent words. Simplified audience insights for content creators by automating comment analysis. Integrated DVC, MLFlow, and Docker for versioning, tracking, and seamless deployment. Deployed on AWS EC2, ensuring global accessibility for users.</p>
-                    <div class="project-links">
-                        <a href="#" class="btn btn-sm" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> Live Demo
-                        </a>
-                        <a href="#" class="btn btn-sm btn-secondary" target="_blank">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image project-placeholder">
-                    <i class="fas fa-code"></i>
-                </div>
-                <div class="project-content">
-                    <h3>CryptoCurrency Forecasting</h3>
-                    <p class="project-date">Date Created</p>
-                    <p>Developed a system to forecast Bitcoin and Ethereum close prices. Designed a robust data pipeline for ingestion, preprocessing, and feature scaling. Built an end-to-end prediction pipeline for real-time forecasting. Dockerized the application and deployed it on AWS EC2 for scalable access.</p>
-                    <div class="project-links">
-                        <a href="#" class="btn btn-sm" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> Live Demo
-                        </a>
-                        <a href="#" class="btn btn-sm btn-secondary" target="_blank">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
-                    </div>
-                </div>
-            </div>
-
             {% for project in projects %}
             <div class="project-card">
                 {% if project.image %}
@@ -59,20 +21,22 @@
                 {% endif %}
                 <div class="project-content">
                     <h3>{{ project.title }}</h3>
-                    <p class="project-date">{{ project.date_created|date:"F Y" }}</p>
-                    <p>{{ project.description|truncatewords:30 }}</p>
-                    <div class="project-links">
-                        {% if project.url %}
-                        <a href="{{ project.url }}" class="btn btn-sm" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> Live Demo
-                        </a>
-                        {% endif %}
+                    <div class="project-meta">
+                        <span class="project-date">{{ project.date_created|date:"M Y" }}</span>
                         {% if project.github_url %}
-                        <a href="{{ project.github_url }}" class="btn btn-sm btn-secondary" target="_blank">
-                            <i class="fab fa-github"></i> GitHub
+                        <a href="{{ project.github_url }}" class="github-link" target="_blank">
+                            <i class="fab fa-github"></i>
                         </a>
                         {% endif %}
                     </div>
+                    {{ project.description|linebreaks }}
+                    {% if project.url %}
+                    <div class="project-links">
+                        <a href="{{ project.url }}" class="btn btn-sm" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
             {% endfor %}

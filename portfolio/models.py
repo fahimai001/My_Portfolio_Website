@@ -2,9 +2,6 @@ from django.db import models
 
 # Create your models here.
 
-
-from django.db import models
-
 class SiteConfiguration(models.Model):
     site_name = models.CharField(max_length=100, default='My Portfolio')
     contact_email = models.EmailField(default='your@email.com')
@@ -48,6 +45,13 @@ class Project(models.Model):
         ordering = ['-date_created']
 
 class Skill(models.Model):
+    CATEGORY_CHOICES = [
+        ('AI/ML', 'AI & Machine Learning'),
+        ('NLP', 'NLP & Generative AI'),
+        ('MLOps', 'MLOps & Cloud'),
+        ('Algorithms', 'Learning Algorithms'),
+    ]
+    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default='AI/ML')
     name = models.CharField(max_length=100)
     proficiency = models.IntegerField(choices=[
         (1, 'Beginner'),

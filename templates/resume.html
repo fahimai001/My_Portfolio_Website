@@ -26,102 +26,75 @@
         </div>
         {% endif %}
 
+        <!-- Professional Experience Section -->
         <div class="resume-section">
             <h3><i class="fas fa-briefcase"></i> Professional Experience</h3>
             <div class="timeline">
+                {% for exp in experience %}
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <h4>AI/ML Engineer</h4>
-                        <h5>JMM Technologies</h5>
-                        <p class="timeline-date">January 2025 - Present</p>
-                        <p>Conducted data analysis, preprocessing, and feature engineering to extract meaningful insights and improve model input quality. Built, tuned, and evaluated machine learning models to ensure optimal performance and accuracy. Collaborated with cross-functional teams to integrate AI models into web applications for seamless functionality. Deployed models on AWS platforms, ensuring scalability, stability, and performance in cloud environments.</p>
+                        <h4>{{ exp.title }}</h4>
+                        <h5>{{ exp.company }}</h5>
+                        <p class="timeline-date">
+                            {{ exp.start_date|date:"M Y" }} -
+                            {% if exp.current %}Present{% else %}{{ exp.end_date|date:"M Y"|default:"Present" }}{% endif %}
+                        </p>
+                        {{ exp.description|linebreaks }}
                     </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h4>AI/ML Engineer Intern</h4>
-                        <h5>Horizon Tech Services NSTP, NUST</h5>
-                        <p class="timeline-date">July 2024 - December 2024</p>
-                        <p>Build and maintain robust pipelines for developing end-to-end machine learning models, ensuring efficiency and scalability throughout the process. Collaborate closely with cross-functional teams to seamlessly integrate machine learning models into web applications, enhancing user experience and functionality. Track experiments and deploy models on AWS cloud.</p>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
 
+        <!-- Education Section -->
         <div class="resume-section">
             <h3><i class="fas fa-graduation-cap"></i> Education</h3>
             <div class="timeline">
+                {% for edu in education %}
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <h4>Bachelor of Science in Computer Science</h4>
-                        <h5>University of Science & Technology, Bannu</h5>
-                        <p class="timeline-date">2020 - 2024</p>
-                        <p>Graduated with a 3.5 CGPA.</p>
+                        <h4>{{ edu.degree }}</h4>
+                        <h5>{{ edu.institution }}</h5>
+                        <p class="timeline-date">
+                            {{ edu.start_date|date:"Y" }} -
+                            {% if edu.current %}Present{% else %}{{ edu.end_date|date:"Y"|default:"Present" }}{% endif %}
+                        </p>
+                        <p>{{ edu.description }}</p>
                     </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
 
+        <!-- Skills Section -->
         <div class="resume-section">
             <h3><i class="fas fa-code"></i> Skills</h3>
             <div class="skills-grid">
+                {% for category, skills in skill_categories.items %}
                 <div class="skill-category">
-                    <h4>AI & Machine Learning</h4>
+                    <h4>{{ category }}</h4>
                     <ul class="skill-list">
-                        <li>Python</li>
-                        <li>Scikit-Learn</li>
-                        <li>TensorFlow</li>
-                        <li>Keras</li>
-                        <li>PyTorch</li>
-                        <li>Matplotlib</li>
-                        <li>Pandas</li>
-                        <li>SQL</li>
+                        {% for skill in skills %}
+                        <li>{{ skill.name }} ({{ skill.get_proficiency_display }})</li>
+                        {% endfor %}
                     </ul>
                 </div>
-                <div class="skill-category">
-                    <h4>NLP & Generative AI</h4>
-                    <ul class="skill-list">
-                        <li>Transformer Architecture</li>
-                        <li>Hugging Face</li>
-                        <li>Fine Tuning</li>
-                        <li>RAG</li>
-                        <li>LangChain</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h4>MLOps & Cloud Based Web-Services</h4>
-                    <ul class="skill-list">
-                        <li>AWS</li>
-                        <li>Docker</li>
-                        <li>Flask</li>
-                        <li>Streamlit</li>
-                        <li>DVC</li>
-                        <li>MLflow</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h4>Unsupervised Learning Algorithms</h4>
-                    <ul class="skill-list">
-                        <li>ANN</li>
-                        <li>CNN</li>
-                        <li>RNN</li>
-                        <li>LSTM</li>
-                        <li>GRU</li>
-                    </ul>
-                </div>
+                {% endfor %}
             </div>
         </div>
 
+        <!-- Projects Section -->
         <div class="resume-section">
             <h3><i class="fas fa-project-diagram"></i> Projects</h3>
             <ul class="project-list">
-                <li>Developed a system to forecast Bitcoin and Ethereum close prices.</li>
-                <li>Built an end-to-end Google Chrome Plugin for YouTube Comment Sentiment Analysis.</li>
-                <li>Designed a robust data pipeline for ingestion, preprocessing, and feature scaling.</li>
-                <li>Dockerized the application and deployed it on AWS EC2 for scalable access.</li>
+                {% for project in projects %}
+                <li>
+                    <strong>{{ project.title }}</strong> - {{ project.description }}
+                    {% if project.url %}(<a href="{{ project.url }}">Demo</a>){% endif %}
+                </li>
+                {% endfor %}
             </ul>
         </div>
     </div>
