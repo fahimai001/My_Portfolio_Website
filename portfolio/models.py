@@ -37,10 +37,10 @@ class Project(models.Model):
     url = models.URLField(blank=True)
     github_url = models.URLField(blank=True)
     date_created = models.DateField()
-    
+
     def __str__(self):
         return self.title
-    
+
     class Meta:
         ordering = ['-date_created']
 
@@ -49,23 +49,16 @@ class Skill(models.Model):
         ('AI/ML', 'AI & Machine Learning'),
         ('NLP', 'NLP & Generative AI'),
         ('MLOps', 'MLOps & Cloud'),
-        ('Algorithms', 'Learning Algorithms'),
+        ("Backend Technologies", "Backend Frameworks")
     ]
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default='AI/ML')
     name = models.CharField(max_length=100)
-    proficiency = models.IntegerField(choices=[
-        (1, 'Beginner'),
-        (2, 'Intermediate'),
-        (3, 'Advanced'),
-        (4, 'Expert'),
-        (5, 'Master'),
-    ])
-    
+
     def __str__(self):
         return self.name
-    
+
     class Meta:
-        ordering = ['-proficiency']
+        ordering = ['name']
 
 class Education(models.Model):
     institution = models.CharField(max_length=200)
@@ -75,10 +68,10 @@ class Education(models.Model):
     end_date = models.DateField(blank=True, null=True)
     current = models.BooleanField(default=False)
     description = models.TextField(blank=True)
-    
+
     def __str__(self):
         return f"{self.degree} at {self.institution}"
-    
+
     class Meta:
         ordering = ['-end_date', '-start_date']
 
@@ -90,10 +83,10 @@ class Experience(models.Model):
     end_date = models.DateField(blank=True, null=True)
     current = models.BooleanField(default=False)
     description = models.TextField()
-    
+
     def __str__(self):
         return f"{self.title} at {self.company}"
-    
+
     class Meta:
         ordering = ['-end_date', '-start_date']
 
@@ -103,9 +96,9 @@ class Contact(models.Model):
     subject = models.CharField(max_length=200)
     message = models.TextField()
     date_sent = models.DateTimeField(auto_now_add=True)
-    
+
     def __str__(self):
         return f"Message from {self.name} - {self.subject}"
-    
+
     class Meta:
         ordering = ['-date_sent']

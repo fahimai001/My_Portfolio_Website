@@ -17,8 +17,8 @@ class UserProfileAdmin(SingletonAdmin):
 # Custom Admins
 @admin.register(Skill)
 class SkillAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'proficiency')
-    list_filter = ('category', 'proficiency')
+    list_display = ('name', 'category')  # Removed 'proficiency'
+    list_filter = ('category',)          # Removed 'proficiency'
     search_fields = ('name',)
 
 @admin.register(Experience)

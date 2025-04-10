@@ -23,20 +23,20 @@
                     <h3>{{ project.title }}</h3>
                     <div class="project-meta">
                         <span class="project-date">{{ project.date_created|date:"M Y" }}</span>
-                        {% if project.github_url %}
-                        <a href="{{ project.github_url }}" class="github-link" target="_blank">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        {% endif %}
                     </div>
                     {{ project.description|linebreaks }}
-                    {% if project.url %}
                     <div class="project-links">
+                        {% if project.url %}
                         <a href="{{ project.url }}" class="btn btn-sm" target="_blank">
                             <i class="fas fa-external-link-alt"></i> Live Demo
                         </a>
+                        {% endif %}
+                        {% if project.github_url %}
+                        <a href="{{ project.github_url }}" class="btn btn-sm" target="_blank" style="margin-left: 10px;">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        {% endif %}
                     </div>
-                    {% endif %}
                 </div>
             </div>
             {% endfor %}
