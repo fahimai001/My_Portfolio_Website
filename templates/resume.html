@@ -4,9 +4,278 @@
 {% block title %}Resume | {{ site_config.site_name }}{% endblock %}
 
 {% block content %}
+<style>
+    /* Professional Resume Styling */
+    .resume {
+        background-color: #f9f9f9;
+        padding: 50px 0;
+        font-family: 'Open Sans', Arial, sans-serif;
+        color: #333;
+    }
+    
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    
+    .section-title {
+        text-align: center;
+        font-size: 32px;
+        margin-bottom: 40px;
+        color: #2c3e50;
+        position: relative;
+    }
+    
+    .section-title:after {
+        content: '';
+        position: absolute;
+        width: 60px;
+        height: 3px;
+        background-color: #3498db;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .resume-header {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    .resume-header h1 {
+        font-size: 38px;
+        margin-bottom: 8px;
+        color: #2c3e50;
+    }
+    
+    .job-title {
+        font-size: 20px;
+        color: #3498db;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+    
+    .contact-info {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    
+    .contact-info p {
+        margin: 0;
+        color: #555;
+        display: flex;
+        align-items: center;
+    }
+    
+    .contact-info i {
+        margin-right: 8px;
+        color: #3498db;
+    }
+    
+    .resume-download {
+        text-align: center;
+        margin: 30px 0;
+    }
+    
+    .btn-primary {
+        display: inline-block;
+        background-color: #3498db;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    }
+    
+    .btn-primary:hover {
+        background-color: #2980b9;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    }
+    
+    .btn-primary i {
+        margin-right: 8px;
+    }
+    
+    .resume-section {
+        margin-bottom: 40px;
+        background: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+    
+    .resume-section h3 {
+        font-size: 22px;
+        color: #2c3e50;
+        margin-bottom: 25px;
+        display: flex;
+        align-items: center;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #f0f0f0;
+    }
+    
+    .resume-section h3 i {
+        margin-right: 10px;
+        color: #3498db;
+    }
+    
+    .timeline {
+        position: relative;
+        margin-left: 20px;
+    }
+    
+    .timeline:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 5px;
+        height: calc(100% - 10px);
+        width: 2px;
+        background-color: #e0e0e0;
+    }
+    
+    .timeline-item {
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 30px;
+    }
+    
+    .timeline-item:last-child {
+        margin-bottom: 0;
+    }
+    
+    .timeline-dot {
+        position: absolute;
+        left: -5px;
+        top: 5px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #3498db;
+        z-index: 1;
+    }
+    
+    .timeline-content {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+    }
+    
+    .timeline-content:hover {
+        box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        transform: translateY(-2px);
+    }
+    
+    .timeline-content h4 {
+        margin-top: 0;
+        color: #2c3e50;
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+    
+    .timeline-content h5 {
+        color: #3498db;
+        font-size: 16px;
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+    
+    .timeline-date {
+        font-style: italic;
+        color: #777;
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
+    
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+    }
+    
+    .skill-category h4 {
+        color: #2c3e50;
+        margin-top: 0;
+        margin-bottom: 15px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .skill-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .skill-list li {
+        padding: 8px 0;
+        display: flex;
+        align-items: center;
+    }
+    
+    .skill-list li:before {
+        content: '▹';
+        color: #3498db;
+        margin-right: 10px;
+    }
+    
+    .project-list {
+        list-style-type: none;
+        padding: 0;
+    }
+    
+    .project-list li {
+        padding: 12px 0;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .project-list li:last-child {
+        border-bottom: none;
+    }
+    
+    .project-list a {
+        color: #3498db;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.2s ease;
+    }
+    
+    .project-list a:hover {
+        color: #2980b9;
+        text-decoration: underline;
+    }
+    
+    @media (max-width: 768px) {
+        .contact-info {
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .skills-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .timeline-content {
+            padding: 15px;
+        }
+    }
+</style>
+
 <section class="resume">
     <div class="container">
-        <h2 class="section-title">Resume</h2>
+        <h2 class="section-title">Professional Resume</h2>
 
         <div class="resume-header">
             <h1>{{ user_profile.name }}</h1>
@@ -20,8 +289,8 @@
 
         {% if user_profile.resume_file %}
         <div class="resume-download">
-            <a href="{{ user_profile.resume_file.url }}" class="btn btn-primary">
-                <i class="fas fa-download"></i> Download PDF
+            <a href="{{ user_profile.resume_file.url }}" class="btn btn-primary" download>
+                <i class="fas fa-download"></i> Download Resume
             </a>
         </div>
         {% endif %}
@@ -77,7 +346,7 @@
                     <h4>{{ category }}</h4>
                     <ul class="skill-list">
                         {% for skill in skills %}
-                        <li>{{ skill.name }} ({{ skill.get_proficiency_display }})</li>
+                        <li>{{ skill.name }} <span style="color: #777;">({{ skill.get_proficiency_display }})</span></li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -92,11 +361,26 @@
                 {% for project in projects %}
                 <li>
                     <strong>{{ project.title }}</strong> - {{ project.description }}
-                    {% if project.url %}(<a href="{{ project.url }}">Demo</a>){% endif %}
+                    {% if project.url %}<span>(<a href="{{ project.url }}" target="_blank">View Demo</a>)</span>{% endif %}
                 </li>
                 {% endfor %}
             </ul>
         </div>
     </div>
 </section>
+
+<script>
+    // Add print functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const printButtons = document.querySelectorAll('.print-resume');
+        if (printButtons) {
+            printButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.print();
+                });
+            });
+        }
+    });
+</script>
 {% endblock %}

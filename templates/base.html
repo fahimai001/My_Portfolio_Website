@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{{ site_config.site_name }}{% endblock %}</title>
     {% load static %}
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -45,30 +46,3 @@
     <main>
         {% block content %}{% endblock %}
     </main>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Contact Info</h3>
-                    <p><i class="fas fa-envelope"></i> <a href="mailto:{{ site_config.contact_email }}">{{ site_config.contact_email }}</a></p>
-                    <p><i class="fas fa-phone"></i> <a href="tel:{{ site_config.phone_number }}">{{ site_config.phone_number }}</a></p>
-                    <p><i class="fas fa-map-marker-alt"></i> {{ site_config.address }}</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Social Media</h3>
-                    <div class="social-links">
-                        {% if site_config.github_url %}
-                        <a href="{{ site_config.github_url }}" target="_blank"><i class="fab fa-github"></i></a>
-                        {% endif %}
-                        {% if site_config.linkedin_url %}
-                        <a href="{{ site_config.linkedin_url }}" target="_blank"><i class="fab fa-linkedin"></i></a>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-            <p class="copyright">{{ site_config.copyright_text }}</p>
-        </div>
-    </footer>
-</body>
-</html>
