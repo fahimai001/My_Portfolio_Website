@@ -11,42 +11,42 @@
             <div class="col-lg-5 mb-3 mb-lg-0">
                 <div class="card border-0 shadow-sm h-100">
                     <div class="card-body p-3">
-                        <h3 class="mb-3 h4" style="color: #2C3E50;">Get In Touch</h3>
+                        <h3 class="mb-3 h4" style="color: #29323c;">Get In Touch</h3>
                         <p class="small">Feel free to reach out to me for any inquiries, project opportunities, or just to say hello.</p>
                         
                         <div class="mt-3">
                             <div class="d-flex mb-3 align-items-center">
                                 <div class="me-3">
-                                    <div style="background-color: #2980B9; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">
+                                    <div style="background-color: #6C63FF; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">
                                         <i class="fas fa-envelope"></i>
                                     </div>
                                 </div>
                                 <div>
-                                    <h4 class="h6 mb-0" style="color: #2C3E50;">Email</h4>
-                                    <a href="mailto:{{ site_config.contact_email }}" style="color: #2980B9; text-decoration: none; font-size: 14px;">{{ site_config.contact_email }}</a>
+                                    <h4 class="h6 mb-0" style="color: #29323c;">Email</h4>
+                                    <a href="mailto:{{ site_config.contact_email }}" style="color: #6C63FF; text-decoration: none; font-size: 14px;">{{ site_config.contact_email }}</a>
                                 </div>
                             </div>
                             
                             <div class="d-flex mb-3 align-items-center">
                                 <div class="me-3">
-                                    <div style="background-color: #2980B9; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">
+                                    <div style="background-color: #6C63FF; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">
                                         <i class="fas fa-phone"></i>
                                     </div>
                                 </div>
                                 <div>
-                                    <h4 class="h6 mb-0" style="color: #2C3E50;">Phone</h4>
-                                    <a href="tel:{{ site_config.phone_number }}" style="color: #2980B9; text-decoration: none; font-size: 14px;">{{ site_config.phone_number }}</a>
+                                    <h4 class="h6 mb-0" style="color: #29323c;">Phone</h4>
+                                    <a href="tel:{{ site_config.phone_number }}" style="color: #6C63FF; text-decoration: none; font-size: 14px;">{{ site_config.phone_number }}</a>
                                 </div>
                             </div>
                             
                             <div class="d-flex mb-3 align-items-center">
                                 <div class="me-3">
-                                    <div style="background-color: #2980B9; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">
+                                    <div style="background-color: #6C63FF; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">
                                         <i class="fas fa-map-marker-alt"></i>
                                     </div>
                                 </div>
                                 <div>
-                                    <h4 class="h6 mb-0" style="color: #2C3E50;">Location</h4>
+                                    <h4 class="h6 mb-0" style="color: #29323c;">Location</h4>
                                     <p class="mb-0 small">{{ site_config.address }}</p>
                                 </div>
                             </div>
@@ -55,12 +55,12 @@
                         <div class="mt-3 pt-2 border-top">
                             <div class="d-flex gap-2 mt-2">
                                 {% if site_config.github_url %}
-                                <a href="{{ site_config.github_url }}" class="btn btn-sm btn-dark" target="_blank" rel="noopener noreferrer" title="GitHub">
+                                <a href="{{ site_config.github_url }}" class="btn btn-sm" style="background-color: #333333; color: white;" target="_blank" rel="noopener noreferrer" title="GitHub">
                                     <i class="fab fa-github"></i> GitHub
                                 </a>
                                 {% endif %}
                                 {% if site_config.linkedin_url %}
-                                <a href="{{ site_config.linkedin_url }}" class="btn btn-sm btn-primary" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                                <a href="{{ site_config.linkedin_url }}" class="btn btn-sm" style="background-color: #0077b5; color: white;" target="_blank" rel="noopener noreferrer" title="LinkedIn">
                                     <i class="fab fa-linkedin-in"></i> LinkedIn
                                 </a>
                                 {% endif %}
@@ -73,7 +73,7 @@
             <div class="col-lg-7">
                 <div class="card border-0 shadow-sm">
                     <div class="card-body p-3">
-                        <h3 class="mb-3 h4" style="color: #2C3E50;">Send a Message</h3>
+                        <h3 class="mb-3 h4" style="color: #29323c;">Send a Message</h3>
                         <form method="post" action="{% url 'contact' %}">
                             {% csrf_token %}
                             <div class="row">
@@ -94,7 +94,7 @@
                                 <label for="message" class="form-label small">Message</label>
                                 <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
                             </div>
-                            <button type="submit" class="btn" style="background-color: #2980B9; color: white;">
+                            <button type="submit" class="btn" style="background-color: #6C63FF; color: white;">
                                 <i class="fas fa-paper-plane me-1"></i> Send Message
                             </button>
                         </form>

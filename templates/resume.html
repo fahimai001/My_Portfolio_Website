@@ -4,315 +4,321 @@
 {% block title %}Resume | {{ site_config.site_name }}{% endblock %}
 
 {% block extra_css %}
-<style>
-    /* Main color variables */
-    :root {
-        --primary: #2980B9;
-        --primary-light: rgba(41, 128, 185, 0.1);
-        --primary-dark: #2471A3;
-        --text-dark: #2C3E50;
-        --text-muted: #6c757d;
-        --bg-light: #f8f9fa;
-        --white: #ffffff;
-        --shadow: 0 5px 15px rgba(0,0,0,0.05);
-        --border-radius: 10px;
-    }
-    
-    body {
-        background-color: #f5f7fa;
-    }
-    
-    /* Video container styling */
-    .video-container {
-        position: relative;
-        overflow: hidden;
-        padding-top: 56.25%; /* 16:9 Aspect Ratio */
-        border-radius: var(--border-radius);
-        box-shadow: var(--shadow);
-    }
-    
-    .video-container iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: 0;
-    }
-    
-    /* Video introduction section */
-    .video-intro-section {
-        background: linear-gradient(to right, var(--white), var(--bg-light));
-        border-radius: var(--border-radius);
-        box-shadow: var(--shadow);
-        margin-bottom: 2.5rem;
-        overflow: hidden;
-        border-left: 4px solid var(--primary);
-    }
-    
-    .video-intro-text {
-        padding: 2rem;
-    }
-    
-    .intro-heading {
-        color: var(--text-dark);
-        font-weight: 700;
-        position: relative;
-        margin-bottom: 1.5rem;
-        display: inline-block;
-    }
-    
-    .intro-heading:after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: -8px;
-        width: 60px;
-        height: 3px;
-        background-color: var(--primary);
-    }
-    
-    /* Resume header */
-    .resume-header {
-        text-align: center;
-        margin-bottom: 2.5rem;
-        padding: 2rem;
-        background-color: var(--white);
-        border-radius: var(--border-radius);
-        box-shadow: var(--shadow);
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .resume-header:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 5px;
-        background: var(--primary);
-    }
-    
-    .header-name {
-        font-size: 2.2rem;
-        font-weight: 700;
-        color: var(--text-dark);
-        margin-bottom: 1rem;
-    }
-    
-    .contact-info {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1.5rem;
-        margin-bottom: 1rem;
-    }
-    
-    .contact-item {
-        display: flex;
-        align-items: center;
-    }
-    
-    .contact-item i {
-        color: var(--primary);
-        margin-right: 8px;
-    }
-    
-    /* Section styling */
-    .resume-section {
-        background-color: var(--white);
-        border-radius: var(--border-radius);
-        box-shadow: var(--shadow);
-        padding: 2rem;
-        margin-bottom: 2rem;
-        border-top: 4px solid var(--primary);
-    }
-    
-    .section-title {
-        color: var(--text-dark);
-        margin-bottom: 1.5rem;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-    }
-    
-    .section-title i {
-        color: var(--primary);
-        margin-right: 10px;
-    }
-    
-    /* Timeline styling */
-    .timeline-item {
-        position: relative;
-        padding-left: 2rem;
-        margin-bottom: 2rem;
-    }
-    
-    .timeline-item:last-child {
-        margin-bottom: 0;
-    }
-    
-    .timeline-dot {
-        position: absolute;
-        left: 0;
-        top: 6px;
-        width: 14px;
-        height: 14px;
-        background-color: var(--primary);
-        border: 2px solid white;
-        border-radius: 50%;
-        box-shadow: 0 0 0 1px var(--primary);
-        z-index: 2;
-    }
-    
-    .timeline-line {
-        position: absolute;
-        left: 6px;
-        top: 20px;
-        bottom: -10px;
-        width: 2px;
-        background-color: #e9ecef;
-        z-index: 1;
-    }
-    
-    .timeline-item:last-child .timeline-line {
-        display: none;
-    }
-    
-    /* Job/Education styling */
-    .job-title, .degree-title {
-        font-size: 1.25rem;
-        font-weight: 600;
-        color: var(--text-dark);
-        margin-bottom: 0.5rem;
-    }
-    
-    .company-name, .institution-name {
-        color: var(--primary);
-        font-weight: 500;
-        font-size: 1.1rem;
-        margin-bottom: 0.5rem;
-    }
-    
-    .date-range {
-        color: var(--text-muted);
-        font-size: 0.9rem;
-        margin-bottom: 1rem;
-    }
-    
-    /* Skills styling */
-    .skill-category {
-        margin-bottom: 2rem;
-    }
-    
-    .skill-category:last-child {
-        margin-bottom: 0;
-    }
-    
-    .category-title {
-        font-size: 1.1rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-        color: var(--text-dark);
-        padding-bottom: 0.5rem;
-        border-bottom: 1px solid #eaeaea;
-    }
-    
-    .skill-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-    
-    .skill-item {
-        background-color: var(--bg-light);
-        border-left: 3px solid var(--primary);
-        padding: 8px 15px;
-        border-radius: 4px;
-        font-size: 0.9rem;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-    }
-    
-    .skill-item i {
-        color: var(--primary);
-        margin-right: 5px;
-    }
-    
-    /* Download button */
-    .download-resume-btn {
-        padding: 0.6rem 1.5rem;
-        background-color: var(--primary);
-        color: white;
-        border: none;
-        border-radius: 5px;
-        font-weight: 500;
-        display: inline-flex;
-        align-items: center;
-        transition: all 0.3s ease;
-    }
-    
-    .download-resume-btn:hover {
-        background-color: var(--primary-dark);
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        color: white;
-    }
-    
-    .download-resume-btn i {
-        margin-right: 8px;
-    }
-    
-    /* Call to action section */
-    .cta-section {
-        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-        color: white;
-        padding: 2rem;
-        border-radius: var(--border-radius);
-        text-align: center;
-        box-shadow: var(--shadow);
-    }
-    
-    .cta-btn {
-        background-color: white;
-        color: var(--primary);
-        border: none;
-        padding: 0.6rem 1.5rem;
-        border-radius: 5px;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        display: inline-flex;
-        align-items: center;
-    }
-    
-    .cta-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        background-color: #f8f9fa;
-        color: var(--primary);
-    }
-    
-    .cta-btn i {
-        margin-right: 8px;
-    }
-    
-    /* Responsive adjustments */
-    @media (max-width: 767px) {
+
+    <style>
+        /* Main color variables */
+        :root {
+            --primary: #6C63FF;
+            --primary-light: rgba(108, 99, 255, 0.1);
+            --primary-dark: #5A53D5;
+            --text-dark: #29323c;
+            --text-muted: #6c757d;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+            --shadow: 0 5px 15px rgba(0,0,0,0.05);
+            --border-radius: 10px;
+            --accent: #FF6584;
+            --gradient-start: #6C63FF;
+            --gradient-end: #5A53D5;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+        }
+        
+        /* Video container styling */
+        .video-container {
+            position: relative;
+            overflow: hidden;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        
+        /* Video introduction section */
         .video-intro-section {
-            padding: 1rem;
+            background: linear-gradient(to right, var(--white), var(--bg-light));
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2.5rem;
+            overflow: hidden;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .video-intro-text {
+            padding: 2rem;
+        }
+        
+        .intro-heading {
+            color: var(--text-dark);
+            font-weight: 700;
+            position: relative;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+        
+        .intro-heading:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        /* Resume header */
+        .resume-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            padding: 2rem;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .resume-header:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+        }
+        
+        .header-name {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
         }
         
         .contact-info {
-            flex-direction: column;
-            gap: 0.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-item {
+            display: flex;
             align-items: center;
         }
         
-        .resume-section, .video-intro-text {
-            padding: 1.5rem;
+        .contact-item i {
+            color: var(--primary);
+            margin-right: 8px;
         }
-    }
-</style>
+        
+        /* Section styling */
+        .resume-section {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-top: 4px solid var(--primary);
+        }
+        
+        .section-title {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            color: var(--primary);
+            margin-right: 10px;
+        }
+        
+        /* Timeline styling */
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 6px;
+            width: 14px;
+            height: 14px;
+            background-color: var(--primary);
+            border: 2px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 0 1px var(--primary);
+            z-index: 2;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            left: 6px;
+            top: 20px;
+            bottom: -10px;
+            width: 2px;
+            background-color: #e9ecef;
+            z-index: 1;
+        }
+        
+        .timeline-item:last-child .timeline-line {
+            display: none;
+        }
+        
+        /* Job/Education styling */
+        .job-title, .degree-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .company-name, .institution-name {
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .date-range {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Skills styling */
+        .skill-category {
+            margin-bottom: 2rem;
+        }
+        
+        .skill-category:last-child {
+            margin-bottom: 0;
+        }
+        
+        .category-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .skill-item {
+            background-color: var(--primary-light);
+            border-left: 3px solid var(--primary);
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .skill-item i {
+            color: var(--primary);
+            margin-right: 5px;
+        }
+        
+        /* Download button */
+        .download-resume-btn {
+            padding: 0.6rem 1.5rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .download-resume-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            color: white;
+        }
+        
+        .download-resume-btn i {
+            margin-right: 8px;
+        }
+        
+        /* Call to action section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+        
+        .cta-btn {
+            background-color: white;
+            color: var(--primary);
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background-color: #f8f9fa;
+            color: var(--primary);
+        }
+        
+        .cta-btn i {
+            margin-right: 8px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 767px) {
+            .video-intro-section {
+                padding: 1rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 0.8rem;
+                align-items: center;
+            }
+            
+            .resume-section, .video-intro-text {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+
+
 {% endblock %}
 
 {% block content %}
@@ -461,15 +467,7 @@
             <p>No skills available.</p>
             {% endfor %}
         </div>
-        
-        <!-- Call to Action Section -->
-        <div class="resume-section cta-section">
-            <h3 class="mb-3">Ready to Discuss Opportunities?</h3>
-            <p class="mb-4">I'm currently available for new challenges and would love to discuss how my skills and experience can benefit your organization.</p>
-            <a href="{% url 'contact' %}" class="cta-btn">
-                <i class="fas fa-envelope"></i>Get In Touch
-            </a>
-        </div>
+ 
     </div>
 </section>
 {% endblock %}
