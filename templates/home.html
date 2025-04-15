@@ -5,135 +5,64 @@
 {% block title %}Home | {{ site_config.site_name }}{% endblock %}
 
 {% block content %}
-<section class="hero simplified-hero">
-    <div class="container">
-        <div class="intro-container">
-            <div class="profile-image">
+<!-- Hero Section -->
+<section class="py-5 bg-light">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-4 text-center mb-4 mb-lg-0">
                 {% if user_profile.profile_image %}
-                <img src="{{ user_profile.profile_image.url }}" alt="{{ user_profile.name }}">
+                <img src="{{ user_profile.profile_image.url }}" alt="{{ user_profile.name }}" class="img-fluid rounded-circle shadow" style="max-width: 300px;">
                 {% else %}
-                <div class="profile-image-placeholder">
-                    <i class="fas fa-user"></i>
+                <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center mx-auto" style="width: 300px; height: 300px;">
+                    <i class="fas fa-user fa-7x"></i>
                 </div>
                 {% endif %}
             </div>
-            <div class="intro-text">
-                <h1>Hello, I'm <span class="highlight">{{ user_profile.name }}</span></h1>
-                <div class="intro-description">
+            <div class="col-lg-8">
+                <h1 class="mb-3">Hello, I'm <span class="text-primary-custom">{{ user_profile.name }}</span></h1>
+                <div class="mb-4">
                     {{ user_profile.about_text|linebreaks }}
+                </div>
+                <div>
+                    {% if user_profile.resume_file %}
+                    <a href="{{ user_profile.resume_file.url }}" class="btn btn-primary-custom me-2 mb-2" download>
+                        <i class="fas fa-download me-2"></i>Download Resume
+                    </a>
+                    {% endif %}
+                    <a href="{% url 'contact' %}" class="btn btn-outline-secondary mb-2">
+                        <i class="fas fa-envelope me-2"></i>Contact Me
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<style>
-    .simplified-hero {
-        padding: 6rem 0;
-        min-height: calc(100vh - 70px - 200px);
-        display: flex;
-        align-items: center;
-    }
-
-    .intro-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 3rem;
-        align-items: center;
-    }
-
-    .profile-image {
-        flex: 0 0 450px;
-        transform: translate(-20px, -20px);
-    }
-
-    .profile-image-placeholder {
-        width: 450px;
-        height: 450px;
-        background-color: var(--gray-200);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 8rem;
-        color: var(--gray-400);
-        overflow: hidden;
-        box-shadow: var(--box-shadow);
-    }
-
-    .profile-image img {
-        width: 450px;
-        height: 450px;
-        object-fit: cover;
-        box-shadow: var(--box-shadow);
-    }
-
-    .intro-text {
-        flex: 1 1 500px;
-    }
-
-    .intro-text h1 {
-        font-family: var(--font-family-headings);
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 1.5rem;
-        color: var(--gray-900);
-    }
-
-    .intro-description p {
-        margin-bottom: 1.2rem;
-        font-size: 1.1rem;
-        color: var(--gray-700);
-        line-height: 1.8;
-        font-weight: 400;
-        letter-spacing: 0.01em;
-        text-rendering: optimizeLegibility;
-    }
-    
-    .intro-description p:first-of-type {
-        font-size: 1.25rem;
-        font-weight: 500;
-        color: var(--gray-800);
-    }
-
-    @media (prefers-color-scheme: dark) {
-        .intro-text h1 {
-            color: var(--gray-100);
-        }
-
-        .intro-description p {
-            color: var(--gray-300);
-        }
+<!-- Skills Section -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center section-title">My Skills</h2>
         
-        .intro-description p:first-of-type {
-            color: var(--gray-200);
-        }
-
-        .profile-image-placeholder {
-            background-color: var(--gray-800);
-            color: var(--gray-600);
-        }
-    }
-
-    @media screen and (max-width: 768px) {
-        .intro-container {
-            flex-direction: column;
-            text-align: center;
-        }
-
-        .profile-image-placeholder,
-        .profile-image img {
-            width: 315px;
-            height: 315px;
-            margin: 0 auto;
-        }
-
-        .profile-image {
-            transform: none;
-        }
-
-        .profile-image-placeholder {
-            font-size: 5.5rem;
-        }
-    }
-</style>
+        <div class="row">
+            {% regroup skills by get_category_display as skill_categories %}
+            {% for category in skill_categories %}
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <h4 class="card-title mb-3">{{ category.grouper }}</h4>
+                        <ul class="list-unstyled">
+                            {% for skill in category.list %}
+                            <li class="mb-2">
+                                <i class="fas fa-check-circle text-primary-custom me-2"></i>
+                                {{ skill.name }}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
 {% endblock %}
