@@ -25,7 +25,6 @@
     
     .video-intro-section {
         background-color: #f8f9fa;
-        padding: 3rem 0;
         border-radius: 8px;
         margin-bottom: 2rem;
     }
@@ -64,6 +63,17 @@
     .download-resume-btn:hover {
         transform: translateY(-2px);
         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    /* Custom style to reduce gap between header and content */
+    .resume-header {
+        margin-bottom: 0 !important;
+        padding-bottom: 0.5rem !important;
+    }
+    
+    .content-section {
+        margin-top: 0 !important;
+        padding-top: 0.5rem !important;
     }
     
     @media (max-width: 767px) {
@@ -105,22 +115,22 @@
         </div>
 
         <!-- Resume Header -->
-        <div class="text-center mb-4 pb-4 border-bottom">
-            <h1 class="mb-3">{{ user_profile.name }}</h1>
-            <div class="d-flex flex-wrap justify-content-center gap-3 mb-3">
+        <div class="text-center resume-header mb-0 pb-1 border-bottom">
+            <h1 class="mb-1">{{ user_profile.name }}</h1>
+            <div class="d-flex flex-wrap justify-content-center gap-3 mb-1">
                 <span><i class="fas fa-envelope text-primary-custom me-2"></i>{{ site_config.contact_email }}</span>
                 <span><i class="fas fa-phone text-primary-custom me-2"></i>{{ site_config.phone_number }}</span>
                 <span><i class="fas fa-map-marker-alt text-primary-custom me-2"></i>{{ site_config.address }}</span>
             </div>
         </div>
 
-        <div class="row">
+        <div class="row content-section mt-2">
             <!-- Left Column for Experience and Education -->
             <div class="col-lg-8">
                 <!-- Experience Section -->
-                <div class="card mb-4 border-0 shadow-sm">
-                    <div class="card-body">
-                        <h3 class="card-title mb-4">
+                <div class="card mb-4 border-0 shadow-sm mt-2">
+                    <div class="card-body pt-3">
+                        <h3 class="card-title mb-3">
                             <i class="fas fa-briefcase text-primary-custom me-2"></i>Experience
                         </h3>
                         
@@ -188,8 +198,8 @@
             <!-- Right Column for Skills -->
             <div class="col-lg-4">
                 <!-- Skills Section -->
-                <div class="card border-0 shadow-sm">
-                    <div class="card-body">
+                <div class="card border-0 shadow-sm mt-2">
+                    <div class="card-body pt-3">
                         <h3 class="card-title mb-4">
                             <i class="fas fa-code text-primary-custom me-2"></i>Skills
                         </h3>
@@ -215,21 +225,4 @@
         </div>
     </div>
 </section>
-{% endblock %}
-
-{% block extra_js %}
-<script>
-    // Add print functionality
-    document.addEventListener('DOMContentLoaded', function() {
-        const printButtons = document.querySelectorAll('.print-resume');
-        if (printButtons) {
-            printButtons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    window.print();
-                });
-            });
-        }
-    });
-</script>
 {% endblock %}
