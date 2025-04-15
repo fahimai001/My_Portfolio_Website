@@ -3,10 +3,106 @@
 
 {% block title %}Resume | {{ site_config.site_name }}{% endblock %}
 
+{% block extra_css %}
+<style>
+    .video-container {
+        position: relative;
+        overflow: hidden;
+        padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        border-radius: 8px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        margin-bottom: 2.5rem;
+    }
+    
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+    
+    .video-intro-section {
+        background-color: #f8f9fa;
+        padding: 3rem 0;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+    }
+    
+    .video-intro-text {
+        padding: 1.5rem;
+    }
+    
+    .intro-heading {
+        margin-bottom: 1.5rem;
+        position: relative;
+        display: inline-block;
+    }
+    
+    .intro-heading:after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background-color: #2980B9;
+    }
+    
+    .timeline-dot {
+        background-color: #2980B9;
+        border: 2px solid white;
+        box-shadow: 0 0 0 1px #2980B9;
+    }
+    
+    .download-resume-btn {
+        padding: 0.6rem 1.5rem;
+        transition: all 0.3s ease;
+    }
+    
+    .download-resume-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    @media (max-width: 767px) {
+        .video-intro-section {
+            padding: 2rem 0;
+        }
+        
+        .video-container {
+            margin-bottom: 1.5rem;
+        }
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 <section class="py-5">
     <div class="container">
-        <h2 class="text-center section-title">Professional Resume</h2>
+        <h2 class="text-center section-title mb-5">Professional Resume</h2>
+
+        <!-- Video Introduction Section -->
+        <div class="row video-intro-section align-items-center mb-5">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="video-container">
+                    <!-- Replace 'YOUR_VIDEO_ID' with your actual YouTube video ID -->
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/bHK1fE_BUms?si=jX9yddcOm_A-WubV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="col-lg-6 video-intro-text">
+                <h3 class="intro-heading">Hi, I'm {{ user_profile.name }}</h3>
+                <p class="lead mb-3">Thank you for taking the time to review my profile. I've created this short introduction video to tell you more about myself, my experience, and what I can bring to your team.</p>
+                <p class="mb-4">In this video, I highlight my background in [your field], my approach to [relevant skills/processes], and share some thoughts on [industry trends/technologies]. I'm passionate about [your area of expertise] and excited about the opportunity to potentially work with your organization.</p>
+                
+                {% if user_profile.resume_file %}
+                <a href="{{ user_profile.resume_file.url }}" class="btn btn-primary-custom download-resume-btn" download>
+                    <i class="fas fa-download me-2"></i>Download Resume PDF
+                </a>
+                {% endif %}
+            </div>
+        </div>
 
         <!-- Resume Header -->
         <div class="text-center mb-4 pb-4 border-bottom">
@@ -16,12 +112,6 @@
                 <span><i class="fas fa-phone text-primary-custom me-2"></i>{{ site_config.phone_number }}</span>
                 <span><i class="fas fa-map-marker-alt text-primary-custom me-2"></i>{{ site_config.address }}</span>
             </div>
-            
-            {% if user_profile.resume_file %}
-            <a href="{{ user_profile.resume_file.url }}" class="btn btn-primary-custom" download>
-                <i class="fas fa-download me-2"></i>Download Resume
-            </a>
-            {% endif %}
         </div>
 
         <div class="row">
@@ -37,7 +127,7 @@
                         {% for exp in experience %}
                         <div class="position-relative ps-4 mb-4{% if forloop.last %} mb-0{% endif %}">
                             <!-- Timeline dot -->
-                            <div class="position-absolute start-0 top-0 bg-primary-custom rounded-circle" style="width: 12px; height: 12px; margin-top: 6px;"></div>
+                            <div class="position-absolute start-0 top-0 bg-primary-custom rounded-circle timeline-dot" style="width: 12px; height: 12px; margin-top: 6px;"></div>
                             
                             <!-- Timeline line -->
                             {% if not forloop.last %}
@@ -70,7 +160,7 @@
                         {% for edu in education %}
                         <div class="position-relative ps-4 mb-4{% if forloop.last %} mb-0{% endif %}">
                             <!-- Timeline dot -->
-                            <div class="position-absolute start-0 top-0 bg-primary-custom rounded-circle" style="width: 12px; height: 12px; margin-top: 6px;"></div>
+                            <div class="position-absolute start-0 top-0 bg-primary-custom rounded-circle timeline-dot" style="width: 12px; height: 12px; margin-top: 6px;"></div>
                             
                             <!-- Timeline line -->
                             {% if not forloop.last %}
@@ -95,10 +185,10 @@
                 </div>
             </div>
 
-            <!-- Right Column for Skills and Projects -->
+            <!-- Right Column for Skills -->
             <div class="col-lg-4">
                 <!-- Skills Section -->
-                <div class="card mb-4 border-0 shadow-sm">
+                <div class="card border-0 shadow-sm">
                     <div class="card-body">
                         <h3 class="card-title mb-4">
                             <i class="fas fa-code text-primary-custom me-2"></i>Skills
@@ -119,41 +209,6 @@
                         {% empty %}
                         <p>No skills available.</p>
                         {% endfor %}
-                    </div>
-                </div>
-
-                <!-- Projects Section -->
-                <div class="card border-0 shadow-sm">
-                    <div class="card-body">
-                        <h3 class="card-title mb-4">
-                            <i class="fas fa-project-diagram text-primary-custom me-2"></i>Projects
-                        </h3>
-                        
-                        <div class="list-group list-group-flush">
-                            {% for project in projects %}
-                            <div class="list-group-item border-0 px-0 py-3">
-                                <h5 class="mb-1">{{ project.title }}</h5>
-                                <p class="text-muted mb-2">
-                                    <small><i class="far fa-calendar-alt me-1"></i> {{ project.date_created|date:"Y" }}</small>
-                                </p>
-                                <p class="mb-2">{{ project.description|truncatewords:15 }}</p>
-                                <div>
-                                    {% if project.url %}
-                                    <a href="{{ project.url }}" class="me-3" target="_blank" rel="noopener noreferrer">
-                                        <i class="fas fa-external-link-alt text-primary-custom me-1"></i> View Demo
-                                    </a>
-                                    {% endif %}
-                                    {% if project.github_url %}
-                                    <a href="{{ project.github_url }}" target="_blank" rel="noopener noreferrer">
-                                        <i class="fab fa-github text-primary-custom me-1"></i> GitHub
-                                    </a>
-                                    {% endif %}
-                                </div>
-                            </div>
-                            {% empty %}
-                            <p>No projects available.</p>
-                            {% endfor %}
-                        </div>
                     </div>
                 </div>
             </div>
