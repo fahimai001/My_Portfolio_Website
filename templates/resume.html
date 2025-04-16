@@ -139,6 +139,19 @@
             font-weight: 700;
             display: flex;
             align-items: center;
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+        
+        .section-title:after {
+            content: "";
+            position: absolute;
+            left: 50px;
+            bottom: 0;
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 3px;
         }
         
         .section-title i {
@@ -314,6 +327,10 @@
             
             .resume-section, .video-intro-text {
                 padding: 1.5rem;
+            }
+            
+            .section-title:after {
+                width: 80px;
             }
         }
     </style>
