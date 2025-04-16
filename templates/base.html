@@ -13,103 +13,113 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #F9F9F9;
-        }
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', sans-serif;
-            color: #2C3E50;
-        }
-        .text-primary-custom {
-            color: #2980B9 !important;
-        }
-        .bg-primary-custom {
-            background-color: #2980B9 !important;
-        }
-        .btn-primary-custom {
-            background-color: #2980B9;
-            border-color: #2980B9;
-            color: white;
-        }
-        .btn-primary-custom:hover {
-            background-color: #2471A3;
-            border-color: #2471A3;
-            color: white;
-        }
-        .navbar {
-            background-color: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,.1);
-        }
-        .navbar-brand {
-            font-weight: 700;
-            color: #2980B9;
-            font-family: 'Montserrat', sans-serif;
-        }
-        .nav-link {
-            color: #2C3E50;
-            font-weight: 500;
-        }
-        .nav-link.active {
-            color: #2980B9 !important;
-        }
-        .section-title {
-            position: relative;
-            padding-bottom: 15px;
-            margin-bottom: 30px;
-        }
-        .section-title:after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 3px;
-            background-color: #2980B9;
-        }
-        
-        /* Improved social icons */
-        .social-icons {
-            display: flex;
-            gap: 15px;
-        }
-        .social-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            text-decoration: none;
-            color: white;
-            background-color: #2980B9;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        .social-icon.github {
-            background-color: #24292e;
-        }
-        .social-icon.linkedin {
-            background-color: #0077b5;
-        }
-        .social-icon.email {
-            background-color: #2980B9;
-        }
-        .social-icon:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-            color: white;
-        }
-    </style>
+
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #F9F9F9;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Montserrat', sans-serif;
+        color: #29323c;
+    }
+    .text-primary-custom {
+        color: #6C63FF !important;
+    }
+    .bg-primary-custom {
+        background-color: #6C63FF !important;
+    }
+    .btn-primary-custom {
+        background-color: #6C63FF;
+        border-color: #6C63FF;
+        color: white;
+    }
+    .btn-primary-custom:hover {
+        background-color: #5A53D5;
+        border-color: #5A53D5;
+        color: white;
+    }
+    .navbar {
+        background-color: white;
+        box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    }
+    .navbar-brand {
+        font-weight: 700;
+        color: #6C63FF;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .navbar-brand span {
+        color: red;
+    }
+    .nav-link {
+        color: #29323c;
+        font-weight: 500;
+    }
+    .nav-link.active {
+        color: #6C63FF !important;
+    }
+    .section-title {
+        position: relative;
+        padding-bottom: 15px;
+        margin-bottom: 30px;
+    }
+    .section-title:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 3px;
+        background-color: #6C63FF;
+    }
+    
+    /* Improved social icons */
+    .social-icons {
+        display: flex;
+        gap: 15px;
+    }
+    .social-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        text-decoration: none;
+        color: white;
+        background-color: #6C63FF;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .social-icon.github {
+        background-color: #333333;
+    }
+    .social-icon.linkedin {
+        background-color: #0077b5;
+    }
+    .social-icon.email {
+        background-color: #6C63FF;
+    }
+    .social-icon:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        color: white;
+    }
+    /* Increased nav spacing */
+    .navbar-nav .nav-item {
+        margin-left: 12px;
+    }
+</style>
+
     {% block extra_css %}{% endblock %}
 </head>
 <body>
     <!-- Fixed Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'home' %}">{{ site_config.site_name }}</a>
+            <a class="navbar-brand" href="{% url 'home' %}">{{ site_config.site_name }}<span>.</span></a>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
