@@ -68,8 +68,8 @@ Message:
             email_obj = EmailMessage(
                 f'Portfolio Contact: {subject}',  # Subject
                 email_message,  # Body
-                'zabihullah18381@gmail.com',  # From email
-                ['zabihullah18381@gmail.com'],  # To email 
+                'fahim.sabir011@gmail.com',  # From email
+                ['fahim.sabir011@gmail.com'],  # To email 
                 headers={'Reply-To': email}  # Set reply-to as the sender's email
             )
             
