@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.core.mail import EmailMessage
 
 # Create your views here.
 
@@ -34,6 +35,7 @@ def projects(request):
     projects = Project.objects.all()
     return render(request, 'projects.html', {'projects': projects})
 
+
 def contact(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -41,7 +43,6 @@ def contact(request):
         subject = request.POST.get('subject')
         message = request.POST.get('message')
         
-        # Create a new Contact message
         Contact.objects.create(
             name=name,
             email=email,
@@ -49,7 +50,36 @@ def contact(request):
             message=message
         )
         
-        messages.success(request, 'Your message has been sent successfully!')
+        # Format the email message
+        email_message = f"""
+You have received a new contact message from your portfolio website:
+
+Name: {name}
+Email: {email}
+Subject: {subject}
+
+Message:
+{message}
+"""
+        
+        # Send the email
+        try:
+            # Create email message
+            email_obj = EmailMessage(
+                f'Portfolio Contact: {subject}',  # Subject
+                email_message,  # Body
+                'zabihullah18381@gmail.com',  # From email
+                ['zabihullah18381@gmail.com'],  # To email 
+                headers={'Reply-To': email}  # Set reply-to as the sender's email
+            )
+            
+            # Send the email
+            email_obj.send(fail_silently=False)
+            messages.success(request, 'Your message has been sent successfully!')
+        except Exception as e:
+            messages.error(request, 'There was an error sending your message. Please try again later.')
+            print(f"Email error: {e}")  # For debugging
+            
         return redirect('contact')
     
     return render(request, 'contact.html')
