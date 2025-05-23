@@ -44,9 +44,9 @@ class Project(models.Model):
 
 class Skill(models.Model):
     CATEGORY_CHOICES = [
-        ('AI/ML', 'AI & Machine Learning'),
+        ('AI/ML', 'Machine Learning & Data Analysis'),
         ('NLP', 'NLP & Generative AI'),
-        ('MLOps', 'MLOps & Cloud'),
+        ('MLOps', 'Data Engineering & Cloud Computing'),
         ("Backend Technologies", "Backend Frameworks")
     ]
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default='AI/ML')
