@@ -14,8 +14,11 @@ def home(request):
     return render(request, 'home.html', {'skills': skills})
 
 def resume(request):
+    current_experience = Experience.objects.filter(current=True).order_by('-start_date')
+    previous_experience = Experience.objects.filter(current=False).order_by('-end_date')
+    experience = list(current_experience) + list(previous_experience)
+    
     education = Education.objects.all().order_by('-end_date')
-    experience = Experience.objects.all().order_by('-end_date')
     projects = Project.objects.all().order_by('-date_created')
     
     # Organize skills by category
@@ -34,7 +37,6 @@ def resume(request):
 def projects(request):
     projects = Project.objects.all()
     return render(request, 'projects.html', {'projects': projects})
-
 
 def contact(request):
     if request.method == 'POST':
